@@ -1,4 +1,4 @@
-import Logo from '.'
+import Logo, { LogoProps } from '.'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
@@ -6,4 +6,4 @@ export default {
   component: Logo
 } as Meta
 
-export const Basic: Story = () => <Logo />
+export const Basic: Story<LogoProps> = (args) => <Logo {...args} />
