@@ -1,4 +1,4 @@
-import Menu from '.'
+import Menu, { MenuProps } from '.'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: Menu
 } as Meta
 
-export const Default: Story = () => <Menu />
+export const Default: Story<MenuProps> = (args) => <Menu {...args} />
 
 Default.parameters = {
   layout: 'fullscreen',
