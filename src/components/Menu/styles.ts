@@ -43,7 +43,7 @@ export const MenuGroup = styled.div`
 export const MenuNav = styled.div`
   ${({ theme }) => css`
     ${media.greaterThan('medium')`
-      margin-left: ${theme.spacings.small}
+      margin-left: ${theme.spacings.small};
     `}
   `}
 `
