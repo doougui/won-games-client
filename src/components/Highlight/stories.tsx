@@ -7,6 +7,7 @@ export default {
   args: {
     title: 'Red Dead is back',
     subtitle: 'An epic tale of honor and loyalty at the dawn of the modern age',
+    backgroundImage: '/img/red-dead-img.jpg',
     buttonLabel: 'Buy now',
     buttonLink: '/rdr2'
   }
