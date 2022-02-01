@@ -13,7 +13,7 @@ const props = {
 
 describe('<GameCard />', () => {
   it('should render correctly', () => {
-    renderWithTheme(<GameCard {...props} />)
+    const { container } = renderWithTheme(<GameCard {...props} />)
 
     expect(
       screen.getByRole('heading', { name: /Population Zero/i })
@@ -30,6 +30,8 @@ describe('<GameCard />', () => {
     expect(screen.getByText(/R\$ 235,00/i)).toBeInTheDocument()
 
     expect(screen.getByLabelText(/Add to wishlist/i)).toBeInTheDocument()
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should render price in label', () => {
@@ -79,5 +81,22 @@ describe('<GameCard />', () => {
     fireEvent.click(screen.getAllByRole('button')[0])
 
     expect(onFav).toBeCalled()
+  })
+
+  it('should render with ribbon', () => {
+    renderWithTheme(
+      <GameCard
+        {...props}
+        ribbon="My Ribbon"
+        ribbonColor="secondary"
+        ribbonSize="small"
+      />
+    )
+
+    const ribbon = screen.getByText(/my ribbon/i)
+
+    expect(ribbon).toBeInTheDocument()
+    expect(ribbon).toHaveStyle({ backgroundColor: theme.colors.secondary })
+    expect(ribbon).toHaveStyle({ height: '2.6rem', fontSize: '1.2rem' })
   })
 })
