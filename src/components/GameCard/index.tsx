@@ -41,7 +41,7 @@ const GameCard = ({
     )}
 
     <S.ImageBox>
-      <Image src={img} alt={title} layout="fill" objectFit="contain" />
+      <Image src={img} alt={title} layout="fill" objectFit="cover" />
     </S.ImageBox>
 
     <S.Content>
