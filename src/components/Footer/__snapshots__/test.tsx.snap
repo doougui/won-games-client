@@ -166,7 +166,7 @@ exports[`<Footer /> should render 4 columns topics 1`] = `
         class="c4 c5"
         color="black"
       >
-        Contact
+        Contact us
       </h2>
       <a
         href="mailto:sac@wongames.com"
