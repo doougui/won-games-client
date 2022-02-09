@@ -16,7 +16,7 @@ export const parameters = {
     values: [
       {
         name: 'won-light',
-        value: theme.colors.white,
+        value: theme.colors.lightBg,
       },
       {
         name: 'won-dark',
