@@ -11,13 +11,13 @@ import Home from '.'
 
 const props = {
   banners: bannersMock,
-  newGames: gamesMock,
+  newGames: [gamesMock[0]],
   mostPopularHighlight: highlightMock,
-  mostPopularGames: gamesMock,
-  upcomingGames: gamesMock,
+  mostPopularGames: [gamesMock[0]],
+  upcomingGames: [gamesMock[0]],
   upcomingHighlight: highlightMock,
-  upcomingMoreGames: gamesMock,
-  freeGames: gamesMock,
+  upcomingMoreGames: [gamesMock[0]],
+  freeGames: [gamesMock[0]],
   freeHighlight: highlightMock
 }
 
@@ -29,10 +29,6 @@ describe('<Home />', () => {
     expect(
       screen.getByRole('heading', { name: /contact us/i })
     ).toBeInTheDocument()
-  })
-
-  it('should render the sections', () => {
-    renderWithTheme(<Home {...props} />)
 
     expect(
       screen.getByRole('heading', { name: /new games/i })
@@ -46,5 +42,14 @@ describe('<Home />', () => {
     expect(
       screen.getByRole('heading', { name: /free Games/i })
     ).toBeInTheDocument()
+
+    // Banner
+    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1)
+
+    // Game Card
+    expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
+
+    // Highlight
+    expect(screen.getAllByText(/red dead is back/i)).toHaveLength(3)
   })
 })
