@@ -50,6 +50,27 @@ describe('<Gallery />', () => {
 
     // Click to close the modal
     fireEvent.click(screen.getByRole('button', { name: /close modal/i }))
+
+    expect(modal.getAttribute('aria-hidden')).toBe('true')
+    expect(modal).toHaveStyle({ opacity: 0 })
+  })
+
+  it('should handle close modal when esc button is pressed', () => {
+    const { container } = renderWithTheme(
+      <Gallery items={mockItems.slice(0, 2)} />
+    )
+
+    // Select the modal
+    const modal = screen.getByLabelText('modal')
+
+    // Click the open thumb and assert that the modal is open and not hidden
+    fireEvent.click(
+      screen.getByRole('button', { name: /Thumb - Gallery Image 1/i })
+    )
+
+    // Press esc to close the modal
+    fireEvent.keyUp(container, { key: 'Escape' })
+
     expect(modal.getAttribute('aria-hidden')).toBe('true')
     expect(modal).toHaveStyle({ opacity: 0 })
   })
