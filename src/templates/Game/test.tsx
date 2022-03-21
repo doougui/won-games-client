@@ -1,3 +1,4 @@
+import 'match-media-mock'
 import { renderWithTheme } from 'utils/tests/helpers'
 
 import Game from '.'
