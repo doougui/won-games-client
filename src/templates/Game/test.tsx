@@ -1,6 +1,9 @@
 import 'match-media-mock'
 import { renderWithTheme } from 'utils/tests/helpers'
 
+import gamesMock from 'components/GameCardSlider/mock'
+import highlightMock from 'components/Highlight/mock'
+
 import Game from '.'
 
 describe('<Game />', () => {
@@ -23,6 +26,9 @@ describe('<Game />', () => {
           rating: 'BR18',
           genres: ['Action', 'Role-playing']
         }}
+        upcomingGames={gamesMock}
+        upcomingHighlight={highlightMock}
+        recommendedGames={gamesMock}
       />
     )
   })
