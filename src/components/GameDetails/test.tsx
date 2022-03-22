@@ -5,6 +5,7 @@ import GameDetails, { GameDetailsProps } from '.'
 
 const props: GameDetailsProps = {
   developer: 'Different Tales',
+  publisher: 'Walkthrough Games',
   platforms: ['windows', 'linux', 'mac'],
   releaseDate: '2020-11-21T23:00:00',
   rating: 'BR0',
@@ -41,6 +42,18 @@ describe('<GameDetails />', () => {
     expect(screen.getByRole('img', { name: /linux/i })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /mac/i })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /windows/i })).toBeInTheDocument()
+  })
+
+  it('should render the developer', () => {
+    renderWithTheme(<GameDetails {...props} rating="BR18" />)
+
+    expect(screen.getByText(/Different Tales/i)).toBeInTheDocument()
+  })
+
+  it('should render the publisher', () => {
+    renderWithTheme(<GameDetails {...props} rating="BR18" />)
+
+    expect(screen.getByText(/Walkthrough Games/i)).toBeInTheDocument()
   })
 
   it('should render free rating when BR0', () => {
