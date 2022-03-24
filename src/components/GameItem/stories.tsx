@@ -9,6 +9,11 @@ export default {
     title: 'Red Dead Redemption 2',
     price: 'R$ 215,00'
   },
+  argTypes: {
+    paymentInfo: {
+      type: 'symbol'
+    }
+  },
   parameters: {
     backgrounds: {
       default: 'won-light'
@@ -23,5 +28,11 @@ export const WithPayment: Story<GameItemProps> = (args) => (
 )
 
 WithPayment.args = {
-  downloadLink: 'https://wongames.com/game/download/red-dead-redemption-2'
+  downloadLink: 'https://wongames.com/game/download/red-dead-redemption-2',
+  paymentInfo: {
+    flag: 'mastercard',
+    img: '/img/master-card.png',
+    number: '**** **** **** 4326',
+    purchaseDate: 'Purchase made on 07/20/2020 at 20:32'
+  }
 }
