@@ -1,10 +1,20 @@
-import CardsList from 'components/CardsList'
+import CardsList, { CardsListProps } from 'components/CardsList'
 import Profile from 'templates/Profile'
 
-export default function CardsPage() {
+import cardsMock from 'components/PaymentOptions/mock'
+
+export default function CardsPage({ cards }: CardsListProps) {
   return (
     <Profile>
-      <CardsList />
+      <CardsList cards={cards} />
     </Profile>
   )
+}
+
+export function getServerSideProps() {
+  return {
+    props: {
+      cards: cardsMock
+    }
+  }
 }
