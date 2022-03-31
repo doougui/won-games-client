@@ -5,14 +5,14 @@ import { useState } from 'react'
 import { Add, ShoppingCart } from 'styled-icons/material-outlined'
 import * as S from './styles'
 
-export type PaymentCart = {
+export type PaymentCard = {
   number: string
   flag: string
   img: string
 }
 
 export type PaymentOptionsProps = {
-  cards?: PaymentCart[]
+  cards?: PaymentCard[]
   handlePayment: () => void
 }
 
