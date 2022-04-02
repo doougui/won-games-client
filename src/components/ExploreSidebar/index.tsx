@@ -4,33 +4,53 @@ import Heading from 'components/Heading'
 import Radio from 'components/Radio'
 import * as S from './styles'
 
-const ExploreSidebar = () => (
+type Field = {
+  label: string
+  name: string
+}
+
+export type ItemProps = {
+  title: string
+  name: string
+  type: string
+  fields: Field[]
+}
+
+export type ExploreSidebarProps = {
+  items: ItemProps[]
+}
+
+const ExploreSidebar = ({ items }: ExploreSidebarProps) => (
   <S.Wrapper>
-    <Heading lineBottom lineColor="secondary" size="small">
-      Price
-    </Heading>
+    {items.map((item) => (
+      <div key={item.title}>
+        <Heading lineBottom lineColor="secondary" size="small">
+          {item.title}
+        </Heading>
 
-    <Checkbox name="under-50" label="Under $50" labelFor="under-50" />
+        {item.type === 'checkbox' &&
+          item.fields.map((field) => (
+            <Checkbox
+              key={field.name}
+              name={field.name}
+              label={field.label}
+              labelFor={field.name}
+            />
+          ))}
 
-    <Heading lineBottom lineColor="secondary" size="small">
-      Sort by
-    </Heading>
-
-    <Radio
-      id="high-to-low"
-      name="sort-by"
-      label="High to low"
-      labelFor="high-to-low"
-      value="high-to-low"
-    />
-
-    <Heading lineBottom lineColor="secondary" size="small">
-      System
-    </Heading>
-
-    <Heading lineBottom lineColor="secondary" size="small">
-      Genre
-    </Heading>
+        {item.type === 'radio' &&
+          item.fields.map((field) => (
+            <Radio
+              id={field.name}
+              key={field.name}
+              name={item.name}
+              label={field.label}
+              labelFor={field.name}
+              value={field.name}
+            />
+          ))}
+      </div>
+    ))}
 
     <Button fullWidth size="medium">
       Filter
