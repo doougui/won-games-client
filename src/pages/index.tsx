@@ -3,31 +3,32 @@ import Home, { HomeTemplateProps } from 'templates/Home'
 import bannersMock from 'components/BannerSlider/mock'
 import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
+import { initializeApollo } from 'utils/apollo'
+import { gql } from '@apollo/client'
 
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+const GET_GAMES = gql`
+  query getGames {
+    games {
+      name
+    }
+  }
+`
 
 export default function Index(props: HomeTemplateProps) {
-  const client = new ApolloClient({
-    uri: 'https://wongamesapi.herokuapp.com/graphql',
-    cache: new InMemoryCache()
-  })
-
-  client.query({
-    query: gql`
-      query getGames {
-        games {
-          name
-        }
-      }
-    `
-  })
+  // return <p>{JSON.stringify(props.data)}</p>
 
   return <Home {...props} />
 }
 
-export function getServerSideProps() {
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query({ query: GET_GAMES })
+
   return {
     props: {
+      data: data,
+      initialApolloState: apolloClient.cache.extract(),
       banners: bannersMock,
       newGames: gamesMock,
       mostPopularHighlight: highlightMock,
