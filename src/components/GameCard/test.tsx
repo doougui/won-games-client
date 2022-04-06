@@ -9,7 +9,7 @@ const props = {
   title: 'Population Zero',
   developer: 'Rockstar Games',
   img: 'https://source.unsplash.com/user/willianjusten/300x140',
-  price: 'R$ 235,00'
+  price: 235
 }
 
 describe('<GameCard />', () => {
@@ -30,7 +30,7 @@ describe('<GameCard />', () => {
       `/game/${props.slug}`
     )
 
-    expect(screen.getByText(props.price)).toBeInTheDocument()
+    expect(screen.getByText('$235.00')).toBeInTheDocument()
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument()
 
@@ -40,7 +40,7 @@ describe('<GameCard />', () => {
   it('should render price in label', () => {
     renderWithTheme(<GameCard {...props} />)
 
-    const price = screen.getByText('R$ 235,00')
+    const price = screen.getByText('$235.00')
 
     expect(price).toBeInTheDocument()
 
@@ -54,10 +54,10 @@ describe('<GameCard />', () => {
   })
 
   it('should render a line-through in price when promotional', () => {
-    renderWithTheme(<GameCard {...props} promotionalPrice="R$ 15,00" />)
+    renderWithTheme(<GameCard {...props} promotionalPrice={15} />)
 
-    const price = screen.getByText('R$ 235,00')
-    const promotionalPrice = screen.getByText('R$ 15,00')
+    const price = screen.getByText('$235.00')
+    const promotionalPrice = screen.getByText('$15.00')
 
     expect(price).toBeInTheDocument()
     expect(promotionalPrice).toBeInTheDocument()
