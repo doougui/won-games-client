@@ -5,7 +5,7 @@ const isProd = process.env.NODE_ENV === 'production'
 module.exports = withPWA({
   reactStrictMode: true,
   images: {
-    domains: ['source.unsplash.com']
+    domains: ['source.unsplash.com', 'res.cloudinary.com']
   },
   pwa: {
     dest: 'public',
