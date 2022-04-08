@@ -27,6 +27,7 @@ export async function getServerSideProps() {
       items: itemsMock,
       total: 'R$ 430,00',
       cards: cardsMock,
+      recommendedTitle: recommended?.section?.title,
       recommendedGames: gamesMapper(recommended?.section?.games),
       recommendedHighlight: highlightMapper(recommended?.section?.highlight)
     }
