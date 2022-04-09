@@ -12,6 +12,12 @@ export const Main = styled(Container)`
   `}
 `
 
+export const Loading = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+  `}
+`
+
 export const ShowMore = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.white};
