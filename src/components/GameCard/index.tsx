@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import formatPrice from 'utils/formatPrice'
@@ -50,7 +49,7 @@ const GameCard = ({
 
     <Link href={`/game/${slug}`} passHref>
       <S.ImageBox>
-        <Image src={img} alt={title} layout="fill" objectFit="cover" />
+        <img src={img} alt={title} />
       </S.ImageBox>
     </Link>
 
