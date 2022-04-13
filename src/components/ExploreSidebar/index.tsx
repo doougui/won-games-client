@@ -4,7 +4,7 @@ import Checkbox from 'components/Checkbox'
 import Heading from 'components/Heading'
 import Radio from 'components/Radio'
 import { ParsedUrlQueryInput } from 'querystring'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Close, FilterList } from 'styled-icons/material-outlined'
 
 import * as S from './styles'
@@ -37,8 +37,13 @@ const ExploreSidebar = ({
   const [values, setValues] = useState(initialValues)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleFilter = () => {
+  useEffect(() => {
     onFilter(values)
+    // This method comes from another template that we don't have access
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values])
+
+  const handleFilterMenu = () => {
     setIsOpen(false)
   }
 
@@ -100,7 +105,7 @@ const ExploreSidebar = ({
       </S.Content>
 
       <S.Footer>
-        <Button fullWidth size="medium" onClick={handleFilter}>
+        <Button fullWidth size="medium" onClick={handleFilterMenu}>
           Filter
         </Button>
       </S.Footer>
