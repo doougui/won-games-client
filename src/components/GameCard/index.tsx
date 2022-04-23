@@ -2,14 +2,9 @@ import Link from 'next/link'
 
 import formatPrice from 'utils/formatPrice'
 
-import Button from 'components/Button'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 
-import {
-  AddShoppingCart,
-  Favorite,
-  FavoriteBorder
-} from 'styled-icons/material-outlined'
+import { Favorite, FavoriteBorder } from 'styled-icons/material-outlined'
 
 import * as S from './styles'
 
@@ -74,7 +69,6 @@ const GameCard = ({
           <S.Price isPromotional>{formatPrice(price)}</S.Price>
         )}
         <S.Price>{formatPrice(promotionalPrice ?? price)}</S.Price>
-        <Button icon={<AddShoppingCart />} size="small" />
       </S.BuyBox>
     </S.Content>
   </S.Wrapper>
