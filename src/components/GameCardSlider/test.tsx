@@ -4,48 +4,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 
 import GameCardSlider from '.'
 
-const items = [
-  {
-    slug: 'population-zero',
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 335,
-    promotionalPrice: 215
-  },
-  {
-    slug: 'population-zero',
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x141',
-    price: 335,
-    promotionalPrice: 215
-  },
-  {
-    slug: 'population-zero',
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x142',
-    price: 335,
-    promotionalPrice: 215
-  },
-  {
-    slug: 'population-zero',
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x143',
-    price: 335,
-    promotionalPrice: 215
-  },
-  {
-    slug: 'population-zero',
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x144',
-    price: 335,
-    promotionalPrice: 215
-  }
-]
+import items from './mock'
 
 describe('<GameSlider />', () => {
   it('should render with 4 active items', () => {
