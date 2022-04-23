@@ -33,6 +33,7 @@
     "lodash.xor": "^4.5.0",
     "next": "12.0.7",
     "next-pwa": "^5.4.4",
+    "nextjs-progressbar": "^0.0.14",
     "polished": "^4.1.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
