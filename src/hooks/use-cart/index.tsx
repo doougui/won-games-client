@@ -8,7 +8,7 @@ const CART_KEY = 'cartItems'
 
 type CartItem = {
   id: string
-  img: string | undefined
+  img: string
   title: string
   price: string
 }

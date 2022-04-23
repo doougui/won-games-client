@@ -1,22 +1,30 @@
 import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
 
-import itemsMock from 'components/CartList/mock'
+import mockItems from 'components/CartList/mock'
 
 import CartDropdown from '.'
+import { render } from 'utils/test-utils'
+import { CartContextDefaultValues } from 'hooks/use-cart'
 
 describe('<CartDropdown />', () => {
-  it('should render the CartIcon and its badge', () => {
-    renderWithTheme(<CartDropdown items={itemsMock} total="R$ 300,00" />)
+  beforeEach(() => {
+    const cartProviderProps = {
+      ...CartContextDefaultValues,
+      items: mockItems,
+      quantity: mockItems.length,
+      total: 'R$ 330,00'
+    }
 
+    render(<CartDropdown />, { cartProviderProps })
+  })
+
+  it('should render the CartIcon and its badge', () => {
     expect(screen.getByLabelText(/shopping cart/i)).toBeInTheDocument()
-    expect(screen.getByText(`${itemsMock.length}`)).toBeInTheDocument()
+    expect(screen.getByText(`${mockItems.length}`)).toBeInTheDocument()
   })
 
   it('should render the dropdown content with cart items and total', () => {
-    renderWithTheme(<CartDropdown items={itemsMock} total="R$ 300,00" />)
-
-    expect(screen.getByText('R$ 300,00')).toBeInTheDocument()
-    expect(screen.getByText(`${itemsMock[0].title}`)).toBeInTheDocument()
+    expect(screen.getByText('R$ 330,00')).toBeInTheDocument()
+    expect(screen.getByText(`${mockItems[0].title}`)).toBeInTheDocument()
   })
 })
