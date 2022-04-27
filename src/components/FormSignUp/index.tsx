@@ -11,6 +11,7 @@ import Button from 'components/Button'
 import TextField from 'components/TextField'
 
 import { FormWrapper, FormLink, FormLoading } from 'components/Form'
+import { signIn } from 'next-auth/react'
 
 const FormSignUp = () => {
   const [values, setValues] = useState<UsersPermissionsRegisterInput>({
@@ -19,7 +20,17 @@ const FormSignUp = () => {
     password: ''
   })
 
-  const [createUser, { loading }] = useMutation(MUTATION_REGISTER)
+  const [createUser, { error, loading }] = useMutation(MUTATION_REGISTER, {
+    onError: (error) => console.log(error),
+    onCompleted: () => {
+      !error &&
+        signIn('credentials', {
+          ...values,
+          redirect: true,
+          callbackUrl: '/'
+        })
+    }
+  })
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -74,7 +85,7 @@ const FormSignUp = () => {
           icon={<Lock />}
         />
 
-        <Button type="submit" size="large" fullWidth>
+        <Button type="submit" size="large" fullWidth disabled={loading}>
           {loading ? <FormLoading /> : <span>Sign up now</span>}
         </Button>
 
