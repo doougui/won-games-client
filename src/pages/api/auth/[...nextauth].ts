@@ -14,12 +14,12 @@ export default NextAuth({
       },
       async authorize(credentials) {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
+          `${process.env.NEXT_PUBLIC_API_URL}auth/local`,
           {
             method: 'POST',
             body: new URLSearchParams({
               identifier: `${credentials?.email}`,
-              passowrd: `${credentials?.password}`
+              password: `${credentials?.password}`
             })
           }
         )
