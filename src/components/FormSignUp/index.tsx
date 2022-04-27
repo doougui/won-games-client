@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { AccountCircle, Email, Lock } from '@styled-icons/material-outlined'
 
+import { useMutation } from '@apollo/client'
+import { MUTATION_REGISTER } from 'graphql/mutation/register'
+
 import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes'
 
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 
-import { FormWrapper, FormLink } from 'components/Form'
-import { useMutation } from '@apollo/client'
-import { MUTATION_REGISTER } from 'graphql/mutation/register'
+import { FormWrapper, FormLink, FormLoading } from 'components/Form'
 
 const FormSignUp = () => {
   const [values, setValues] = useState<UsersPermissionsRegisterInput>({
@@ -18,10 +19,11 @@ const FormSignUp = () => {
     password: ''
   })
 
-  const [createUser] = useMutation(MUTATION_REGISTER)
+  const [createUser, { loading }] = useMutation(MUTATION_REGISTER)
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
+
     createUser({
       variables: {
         input: {
@@ -73,7 +75,7 @@ const FormSignUp = () => {
         />
 
         <Button type="submit" size="large" fullWidth>
-          Sign up now
+          {loading ? <FormLoading /> : <span>Sign up now</span>}
         </Button>
 
         <FormLink>
