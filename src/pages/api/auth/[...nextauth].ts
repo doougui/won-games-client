@@ -36,20 +36,26 @@ export default NextAuth({
   ],
   callbacks: {
     session: async ({ session, user }) => {
-      session.jwt = user.jwt
-      session.id = user.id
+      if (user) {
+        session.jwt = user.jwt
+        session.id = user.id
+      }
 
-      return Promise.resolve(session)
+      return session
     },
     jwt: async ({ token, user }) => {
       if (user) {
         token.id = user.id
         token.email = user.email
-        token.name = user.name
+        token.name = String(user.username)
         token.jwt = user.jwt
       }
 
-      return Promise.resolve(token)
+      return token
     }
+  },
+  session: {
+    // Set to jwt in order to CredentialsProvider works properly
+    strategy: 'jwt'
   }
 })

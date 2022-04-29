@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/react'
 import Dropdown from 'components/Dropdown'
 
 import {
@@ -39,12 +40,10 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
         </S.Link>
       </Link>
 
-      <Link href="/logout" passHref>
-        <S.Link title="Sign out">
-          <ExitToApp />
-          <span>Sign out</span>
-        </S.Link>
-      </Link>
+      <S.Link title="Sign out" onClick={() => signOut()} role="button">
+        <ExitToApp />
+        <span>Sign out</span>
+      </S.Link>
     </S.Nav>
   </Dropdown>
 )
