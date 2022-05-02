@@ -9,6 +9,7 @@ import TextField from 'components/TextField'
 
 import * as S from './styles'
 import { FieldErrors, signInValidate } from 'utils/validations'
+import { useRouter } from 'next/router'
 
 const FormSignIn = () => {
   const [formError, setFormError] = useState('')
@@ -17,6 +18,8 @@ const FormSignIn = () => {
     email: '',
     password: ''
   })
+
+  const { query } = useRouter()
 
   const [loading, setLoading] = useState(false)
 
@@ -38,7 +41,7 @@ const FormSignIn = () => {
     return await signIn('credentials', {
       ...values,
       redirect: true,
-      callbackUrl: '/'
+      callbackUrl: `${window.location.origin}/${query?.callbackUrl || ''}`
     })
       .catch(() => {
         setFormError('Username or password is invalid')

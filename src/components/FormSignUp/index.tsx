@@ -52,7 +52,6 @@ const FormSignUp = () => {
     const errors = signUpValidate(values)
 
     if (Object.keys(errors).length) {
-      console.log(errors)
       setFieldError(errors)
       return
     }
