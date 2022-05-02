@@ -1,11 +1,10 @@
-import { fireEvent, screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, fireEvent, screen } from 'utils/test-utils'
 
 import Menu from '.'
 
 describe('<Menu />', () => {
   it('should render the menu', () => {
-    renderWithTheme(<Menu />)
+    render(<Menu />)
 
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /won games/i })).toBeInTheDocument()
@@ -15,7 +14,7 @@ describe('<Menu />', () => {
   })
 
   it('should handle the open/close mobile menu', () => {
-    renderWithTheme(<Menu />)
+    render(<Menu />)
 
     // Select the full menu containing the aria-hidden="true"
     const fullMenuElement = screen.getByRole('navigation', { hidden: true })
@@ -36,22 +35,28 @@ describe('<Menu />', () => {
   })
 
   it('should show register box when logged out', () => {
-    renderWithTheme(<Menu />)
+    render(<Menu />)
 
     expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument()
-
-    expect(screen.getByText(/sign in now/i)).toBeInTheDocument()
     expect(screen.getByText(/sign up/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/sign in/i)).toHaveLength(2)
   })
 
   it('should show wishlist and account when logged in', () => {
-    renderWithTheme(<Menu username="Douglas" />)
+    render(<Menu username="Douglas" />)
 
-    expect(screen.queryByText(/sign in now/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument()
 
     expect(screen.getAllByText(/my profile/i)).toHaveLength(2)
     expect(screen.getAllByText(/wishlist/i)).toHaveLength(2)
+  })
+
+  it('shoud not show sign in or dropdown user if loading', () => {
+    render(<Menu username="will" loading />)
+
+    expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument()
   })
 })
